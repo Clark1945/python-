@@ -5,7 +5,6 @@ response=requests.get(api_url)
 api=response.json()['records']
 # print(response.status_code)
 data2=[]
-
 for dic in api :
     dic.pop("itemunit")
     data2.append(dic)

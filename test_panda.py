@@ -21,3 +21,4 @@ df2=df.drop("Archer")
 print(df2)
 print("-----------------------------------")
 df.plot()
+
