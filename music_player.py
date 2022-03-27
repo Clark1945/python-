@@ -6,7 +6,7 @@ def choose():
 def playmp3():
     global status,playsong,preplaysong
     if playsong==preplaysong:
-        if not mixer.music.get_busy(): 
+        if not mixer.music.get_busy(): #檢查是否正在播放
             mixer.music.load(playsong)
             mixer.music.play(loops=-1)
         else:
@@ -75,17 +75,19 @@ f=True
 choice=tk.StringVar()
 
 for mp3 in mp3files:
-    rbtem=tk.Radiobutton(frame1,text=mp3,variable=choice,value=mp3,command=choose)
+    rbtem=tk.Radiobutton(frame1,text=mp3,variable=choice,value=mp3,command=choose)  #增加音樂選項
     if index==0:
         rbtem.select()
         playsong=preplaysong=mp3
-    rbtem.grid(row=index,column=0,sticky="w")
+    rbtem.grid(row=index,column=0,sticky="w")  #版面調整
     index+=1
     
 msg=tk.StringVar()
 msg.set("\n播放歌曲:")
 label=tk.Label(window,textvariable=msg,fg="blue",font=("新細明體",10))
+
 label.pack()
+
 labelsep=tk.Label(window,text="\n")
 labelsep.pack()
 
