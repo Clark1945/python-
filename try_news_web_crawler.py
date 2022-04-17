@@ -238,6 +238,31 @@ def eco_money_management():
         print(date[0:5])
         print(title2.strip())
         print(title.div.h4.a.get("href"))
+def cnn_breakingnews():
+    ori_url="https://edition.cnn.com"
+    response=requests.get("https://edition.cnn.com/business")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("CNN新聞-焦點新聞")
+    print("日期",datetime.date.today())
+    column=soup.find_all("span",class_="cd__headline-text")
+    for title in column:
+        dates=title.find_parent()
+        print("date = ",dates.get("href")[1:11])
+        print("title = ",title.text)
+        print("URL = ",ori_url+dates.get("href"))
+
+def cnn_investing():
+    ori_url="https://edition.cnn.com"
+    response=requests.get("https://edition.cnn.com/business/investing")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("CNN新聞-投資新聞")
+    print("日期",datetime.date.today())
+    column=soup.find_all("h3")
+    for title in column:
+        print("date = ",title.a.get("href")[1:11])
+        print("title = ",title.text)
+        print("URL = ",ori_url+title.a.get("href"))
+        
 # udn_global()
 # udn_local()
 # udn_industrial_economics()
@@ -253,4 +278,6 @@ def eco_money_management():
 # eco_global()
 # eco_finance()
 # eco_future()
-eco_money_management()
+# eco_money_management()
+# cnn_breakingnews()
+# cnn_investing()
