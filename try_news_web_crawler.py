@@ -152,7 +152,7 @@ def chi_tech():
 def ltn_world():
     response=requests.get("https://news.ltn.com.tw/list/breakingnews/world")
     soup=BeautifulSoup(response.text,"html.parser")
-    print("自由時報")
+    print("自由時報──國際")
     print("日期",datetime.date.today())
     article=soup.find("div",class_="whitecon boxTitle").ul
     # print(article)
@@ -161,6 +161,83 @@ def ltn_world():
         print(y.a.get("title"))
         print(y.a.get("href"))
 
+def eco_industry():      
+    response=requests.get("https://money.udn.com/money/cate/5591?from=edn_navibar")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("經濟日報──產業")
+    print("日期",datetime.date.today())
+    column=soup.find_all("li",class_="rank__item")
+    for title in column:
+        title2 = title.div.h4.text
+        date=title.div.time.text
+        print(date[0:5])
+        print(title2.strip())
+        print(title.div.h4.a.get("href"))
+
+def eco_money():      
+    response=requests.get("https://money.udn.com/money/cate/5590?from=edn_navibar")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("經濟日報──證券")
+    print("日期",datetime.date.today())
+    column=soup.find_all("li",class_="rank__item")
+    for title in column:
+        title2 = title.div.h4.text
+        date=title.div.time.text
+        print(date[0:5])
+        print(title2.strip())
+        print(title.div.h4.a.get("href"))
+
+def eco_global():      
+    response=requests.get("https://money.udn.com/money/cate/5588?from=edn_navibar")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("經濟日報──證券")
+    print("日期",datetime.date.today())
+    column=soup.find_all("li",class_="rank__item")
+    for title in column:
+        title2 = title.div.h4.text
+        date=title.div.time.text
+        print(date[0:5])
+        print(title2.strip())
+        print(title.div.h4.a.get("href"))
+
+def eco_finance():      
+    response=requests.get("https://money.udn.com/money/cate/12017?from=edn_navibar")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("經濟日報──金融")
+    print("日期",datetime.date.today())
+    column=soup.find_all("li",class_="rank__item")
+    for title in column:
+        title2 = title.div.h4.text
+        date=title.div.time.text
+        print(date[0:5])
+        print(title2.strip())
+        print(title.div.h4.a.get("href"))
+
+def eco_future():      
+    response=requests.get("https://money.udn.com/money/cate/11111?from=edn_navibar")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("經濟日報──期貨")
+    print("日期",datetime.date.today())
+    column=soup.find_all("li",class_="rank__item")
+    for title in column:
+        title2 = title.div.h4.text
+        date=title.div.time.text
+        print(date[0:5])
+        print(title2.strip())
+        print(title.div.h4.a.get("href"))
+
+def eco_money_management():      
+    response=requests.get("https://money.udn.com/money/cate/5592?from=edn_navibar")
+    soup=BeautifulSoup(response.text,"html.parser")
+    print("經濟日報──理財")
+    print("日期",datetime.date.today())
+    column=soup.find_all("li",class_="rank__item")
+    for title in column:
+        title2 = title.div.h4.text
+        date=title.div.time.text
+        print(date[0:5])
+        print(title2.strip())
+        print(title.div.h4.a.get("href"))
 # udn_global()
 # udn_local()
 # udn_industrial_economics()
@@ -171,3 +248,9 @@ def ltn_world():
 # chi_tech()
 # chi_world()
 # ltn_world()
+# eco_industry()
+# eco_money()
+# eco_global()
+# eco_finance()
+# eco_future()
+eco_money_management()
