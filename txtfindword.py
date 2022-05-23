@@ -2,7 +2,7 @@ import os,docx
 curpath=os.path.dirname(__file__)
 sampletree=os.walk(curpath)
 
-keyword="虛無"
+keyword=input("輸入你要搜尋的字串：\n")
 print("搜尋字串為:{}".format(keyword))
 for dirname,subdir,allfiles in sampletree:
     allfile=[]

@@ -10,19 +10,17 @@ connection= mysql.connector.connect(
 
 cursor=connection.cursor()
 
-# cursor.execute("use `sql_tutorial`;")
-# # cursor.close()
-# # connection.close()
-# cursor.execute("show databases;")
-# records=cursor.fetchall()
-# for x in records:
-#     print(x)
+cursor.execute("use `sql_tutorial`;")
+cursor.execute("show databases;")
+records=cursor.fetchall()
+for x in records:
+    print(x)
     
-# cursor.execute("use `company_data`;")
-# cursor.execute("create table `extra_list`(danger varchar(20));")
+cursor.execute("use `company_data`;")
+cursor.execute("create table `extra_list2`(danger varchar(20));")
 
 
 
 #Update資料一定要使用 connection.commit()
-cursor.close()
+#cursor.close()
 connection.close()

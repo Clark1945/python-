@@ -1,4 +1,6 @@
 from pytube import YouTube
+import os;
+
 the_url=input("請輸入想下載的影片:")
 yt=YouTube(url=the_url)#想下載的影片
 print("影片:",yt.title)#影片標題
