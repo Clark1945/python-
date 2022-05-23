@@ -1,4 +1,7 @@
 # python-
 
-嘗試實作Facebook API 貼文下載，但由於FB develope API 已經不支援而無法使用。
-使用Pytube套件實作Youtube 影片下載器
+實作功能如下：
+
+1. Facebook貼文下載。
+   利用Facebook官方提供的API，可大量抓取用戶的貼文，後續可進行儲存等分析方向。
+2. 
