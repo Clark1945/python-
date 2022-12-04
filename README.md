@@ -31,6 +31,9 @@ B. 中國時報財經、國際、科技
 C. 經濟日報產業、證券、金融、期貨、理財
 D. CNN -Top News、Investment
 
+14. DB實作： 使用XAMPP啟動MySQL服務。Python安裝PySQLSql與SQLAlchemy
+模組PySQLSql SQLAlchemy連線資料庫時所指定的MySQL資料庫驅動程式。
+模組SQLAlchemy用於連線資料庫
 
 
 Ex: pm 2.5偵測器功能 已廢棄
