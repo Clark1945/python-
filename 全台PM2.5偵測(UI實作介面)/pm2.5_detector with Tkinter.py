@@ -67,8 +67,8 @@ for x in data2:
         data3.append([x['county'],x['site'],x['pm25'],x['datacreationdate']])
 columns=["縣市","站點","PM25","探測日期"]
 df=pd.DataFrame(data3,columns=columns)
-# print(data3)
-print(df.PM2_5)
+# print(df)
+print(df.PM25)
 
 win=tk.Tk()
 win.geometry("640x270")

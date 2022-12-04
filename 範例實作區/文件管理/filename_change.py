@@ -1,12 +1,15 @@
 import os,shutil
 cur_path=os.path.dirname(__file__)
-tree_sample=os.walk(cur_path+"\\media")
+tree_sample=os.walk(cur_path)
 outputdir='space2'#輸出資料夾
 inputdir='space1'#輸入資料夾
+
+
 
 for dirname,subdir,files in tree_sample:#讀取資料夾名稱,下一層資料夾與資料夾中所有檔案   
     allfiles=[]
     basename=os.path.basename(dirname)
+    print(basename)
     if basename==outputdir:  #output區不重覆讀取
         continue
     if basename==inputdir:
@@ -15,7 +18,7 @@ for dirname,subdir,files in tree_sample:#讀取資料夾名稱,下一層資料�
             if (ext == 'jpg' or ext == 'png'):  
                 allfiles.append(file)#加入除了output區外的所有圖片檔
         if len(allfiles)>0:
-            targetdir='media\\'+outputdir
+            targetdir=outputdir
             if not os.path.exists(targetdir):#檢查output區是否存在，無則新增一個
                 os.mkdir(targetdir)
             if(os.getcwd() != cur_path+"\\media\\space2"):#如當前目錄不位於output區，則轉到output區

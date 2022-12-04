@@ -24,17 +24,20 @@ while (selection != -1):
     inputText=input("輸入原文：")
     translationEn = translator.translate(inputText, dest='en')
     print(translationEn.text)
-  if selection==2:
+  elif selection==2:
     inputText=input("輸入原文：")
     translationJp = translator.translate(inputText, dest='ja')
     print(translationJp.text)
-  if selection==3:
+  elif selection==3:
     inputText=input("輸入原文：")
     translationIt = translator.translate(inputText, dest='en')
     print(translationIt.text)
-  if selection==4:
+  elif selection==4:
     inputText=input("輸入原文：")
     translationIt = translator.translate(inputText, dest='zh-tw')
     print(translationIt.text)
-
+  else:
+    print("ERROR")
+    continue
+  
 print("\n運作完成！")

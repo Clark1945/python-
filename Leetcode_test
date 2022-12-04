@@ -1,0 +1,145 @@
+def selection_sort(nums):
+    n = len(nums)
+    for i in range(n-1): #所有陣列的搜尋
+        min_idx = i
+        for j in range(i+1, n): #search 範圍
+            if nums[j] < nums[min_idx]:
+                min_idx = j #取得較小數字的索引
+        # swap
+        nums[i], nums[min_idx] = nums[min_idx], nums[i] #值的交換
+#print("選擇排序法")            
+nums = [5,4,3,1,2]
+#print("排序前 = %s" % nums)
+#selection_sort(nums)
+#print("排序後 = %s" % nums)
+
+b_data = [89, 34, 23, 78, 67, 100, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
+
+def bubblesort(data):
+    # 定義資料長度
+    n = len(data)
+    for i in range(n-2):                   # 有 n 個資料長度，但只要執行 n-1 次
+        for j in range(n-i-1):             # 從第1個開始比較直到最後一個還沒到最終位置的數字 
+            if data[j] > data[j+1]:        # 比大小然後互換
+                data[j], data[j+1] = data[j+1], data[j]
+
+#print("氣泡排序法") 只跟自己的鄰邊交換
+#print("排序前 = %s" % b_data)
+#bubblesort(b_data)
+#print("排序後 = %s" % b_data)
+
+
+
+data = [89, 34, 23, 78, 67, 110, 66, 29, 79, 55, 78, 88, 92, 96, 96, 23]
+
+def merge(left, right):
+    result = []
+
+    while len(left) and len(right):
+        if (left[0] < right[0]):
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+
+    result = result+left if len(left) else result+right
+    return result
+
+def mergeSort(array):
+    if len(array) < 2:
+        return array
+
+    mid = len(array)//2 #切割
+    leftArray = array[:mid]
+    rightArray = array[mid:]
+
+    return merge(mergeSort(leftArray),mergeSort(rightArray))
+
+#print(mergeSort(data))
+#每次都是比較最左邊的資料，將較小的加到新陣列中，因此每次排序與合併必須經過 n 次，每回合log n次，O(log n)。
+
+def binary_search(data, key):
+    low = 0
+    high = len(data)-1
+    while low <= high:
+        mid = int((low + high) / 2)
+        if key == data[mid]:
+            return mid
+        elif key > data[mid]:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+data = [1, 9, 2, 7, 4, 10, 3, 8, 5, 6]
+key = 7
+data.sort()
+#print(data)
+ret = binary_search(data, key)
+#if ret == -1:
+#    print('找不到')
+#else:
+#    print('找到索引值' + str(ret))
+
+class employee:
+    def  __init__(self):
+        self.num=0
+        self.salary=0
+        self.name=""
+        self.next=None
+
+    def invert(x):#x是串列的開始指標
+        p=x#指向串列開頭
+        q=None#q是前一個節點
+        while p!=None:
+            r=q#將r接到q之後
+            q=p#將q接到p之後
+            p=p.next#移動到下一個節點
+            q.next=r#連結到之前的節點
+        return q
+
+#Graph
+graph = {
+    'A': ["B", "D", "E"],
+    'B': ["A", "C"],
+    'C': ["B", "E"],
+    'D': ["A", "E"],
+    'E': ["A", "D", "F", "C"],
+    'F': ["E"]     
+}
+
+def bfs(graph,start):
+    queue = []
+    queue.append(start)
+    result = []
+    visited = set()
+    visited.add(start)
+    while(len(queue)>0):
+        currentVertex = queue.pop(0)
+        result.append(currentVertex)
+        for neighbor in graph[currentVertex]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+    return result
+    
+def dfs(graph,start):
+    stack = []
+    result = []
+    stack.append(start)
+    visited = set()
+    visited.add(start)
+    while(len(stack)>0):
+        currentVertex = stack.pop()
+        result.append(currentVertex)
+        for neighbor in graph[currentVertex]:
+            if neighbor not in visited:
+                stack.append(neighbor)
+                visited.add(neighbor)
+    return result
+
+
+print(bfs(graph,'A'))
+#['A', 'B', 'D', 'E', 'C', 'F']
+
+print(dfs(graph,'A'))
+#['A', 'E', 'C', 'F', 'D', 'B']

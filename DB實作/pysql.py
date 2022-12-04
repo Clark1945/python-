@@ -15,12 +15,8 @@ cursor.execute("show databases;")
 records=cursor.fetchall()
 for x in records:
     print(x)
-    
 cursor.execute("use `company_data`;")
 cursor.execute("create table `extra_list2`(danger varchar(20));")
-
-
-
 #Update資料一定要使用 connection.commit()
 #cursor.close()
 connection.close()
