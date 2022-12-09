@@ -1,7 +1,3 @@
-
-
-import time
-
 def todigit(n):
     if n<10:
         return '0'+str(n)
@@ -25,10 +21,10 @@ from plotly.graph_objs import Scatter,Layout
 from plotly.offline import plot
 
 
-plt.rcParams["font.sans-serif"]="mingliu" #中文字型
+plt.rcParams["font.sans-serif"]="mingliu" # 中文字型
 plt.rcParams["axes.unicode_minus"]=False
 
-pd.options.mode.chained_assignment=None
+pd.options.mode.chained_assignment=None #避免Pandas顯示訊息
 
 url_base = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=2021'
 url_tail='01&stockNo=2330&_=1670560076969'
@@ -43,11 +39,11 @@ if not os.path.isfile(file_path):
         outputFile=open(file_path,'a',newline='',encoding='UTF-8')
         outputWriter=csv.writer(outputFile)
         if i==1:
-            outputWriter.writerow(json_data['fields'])
+            outputWriter.writerow(json_data['fields']) #表格欄位只加入一次
         
         for dataLine in (json_data['data']):
             outputWriter.writerow(dataLine)
-        time.sleep(0.5)
+        time.sleep(0.5)  #避免掛掉
     outputFile.close()
 
 pdstock=pd.read_csv(file_path,encoding='UTF-8')
@@ -59,8 +55,8 @@ data=[
     Scatter(x=pdstock['日期'],y=pdstock['收盤價'],name='收盤價'),
     Scatter(x=pdstock['日期'],y=pdstock['最低價'],name='最低價'),
     Scatter(x=pdstock['日期'],y=pdstock['最高價'],name='最高價')
-]
-plot({"data":data,"layout": Layout(title='2019年年度個股統計')},auto_open=False)
+]  #繪圖工具，每個代表一道曲線
+plot({"data":data,"layout": Layout(title='2019年年度個股統計')},auto_open=False) #產生HTML檔案於Local端
 
 pcode=re.search('stockNo=(\d+)',url_tail).group(1)
-df_plot=pdstock.plot(kind='line',figsize=(12,6),x="日期",y=["收盤價","最低價","最高價"],title=pcode+'_'+file_path) #畫統計圖
+df_plot=pdstock.plot(kind='line',figsize=(12,6),x="日期",y=["收盤價","最低價","最高價"],title=pcode+'_'+file_path) #畫統計圖(ipynb)

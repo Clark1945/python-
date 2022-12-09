@@ -35,7 +35,7 @@ D. CNN -Top News、Investment
 模組PySQLSql SQLAlchemy連線資料庫時所指定的MySQL資料庫驅動程式。
 模組SQLAlchemy用於連線資料庫
 
-15. 台股市場分析： 
+15. 台股市場分析： 開啟網站取得背後的XHR資料(使用JSON編碼)，透過修改get的網址取得，包含月統計年統計與Plotly呈現
 
 
 Ex: pm 2.5偵測器功能 已廢棄
