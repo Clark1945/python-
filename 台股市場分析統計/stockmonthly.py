@@ -4,7 +4,7 @@ def convertDate(date):
     realYear=str(int(year_str)+1911)
     realDate=realYear+date_str[4:6]+date_str[7:9]
     return realDate
-import requests
+import requests,re
 import json,csv
 import pandas as pd
 import os
@@ -14,17 +14,16 @@ plt.rcParams["font.sans-serif"]="mingliu" #中文字型
 plt.rcParams["axes.unicode_minus"]=False
 
 pd.options.mode.chained_assignment=None
-file_path='stock_month1.csv'
+file_path='stock_month.csv'
 
 if not os.path.isfile(file_path):
-    url_twse='https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20190101&stockNo=2317&_=1670555676340'
+    url_twse='https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20210801&stockNo=2330&_=1670560076969'
     res=requests.get(url_twse)
     json_data=json.loads(res.text)
-
+    titleFor=re.search('\d{4} \S+',json_data['title']).group()
+    file_path=titleFor+file_path
     outputFile=open(file_path,'w',newline='',encoding='UTF-8')
     outputWriter=csv.writer(outputFile)
-    df_output=pd.DataFrame(columns=json_data['fields'])
-    
     outputWriter.writerow(json_data['fields'])
     
     for dataLine in (json_data['data']):

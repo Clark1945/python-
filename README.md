@@ -35,5 +35,7 @@ D. CNN -Top News、Investment
 模組PySQLSql SQLAlchemy連線資料庫時所指定的MySQL資料庫驅動程式。
 模組SQLAlchemy用於連線資料庫
 
+15. 台股市場分析： 
+
 
 Ex: pm 2.5偵測器功能 已廢棄
