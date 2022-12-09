@@ -30,9 +30,9 @@ if not os.path.isfile(file_path):
         outputWriter.writerow(dataLine)
     outputFile.close()
 
-
 pdstock=pd.read_csv(file_path,encoding='UTF-8')
 for i in range(len(pdstock['日期'])):
     pdstock['日期'][i] = convertDate(pdstock['日期'][i])
 pdstock['日期']=pd.to_datetime(pdstock['日期'])
-pdstock.plot(kind='line',figsize=(12,6),x="日期",y=["收盤價","最低價","最高價"]) #畫統計圖
+df_plot=pdstock.plot(kind='line',figsize=(12,6),x="日期",y=["收盤價","最低價","最高價"]) #畫統計圖
+print(df_plot)
