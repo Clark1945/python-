@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask,render_template
 app = Flask(__name__) #建立app物件
-
+import plotly as py
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import os
+import json
 
 @app.route('/<town>') # 網址加入參數
 def index(town):
@@ -109,7 +110,53 @@ def index(town):
         df["風速(m/s)"]=measurement_windS
         df["風向"]=measurement_windDirection
         df["舒適度"]=measurement_comfort
+
+        values = [temp_date,measurement_time,measurement_weather,measurement_temperature,measurement_bodyTemperature
+]       
+        table = {
+        'type': 'table',
+        'header': {
+            'values': [["<b>日期</b>"], ["<b>時間</b>"],
+                        ["<b>天氣狀況</b>"], ["<b>溫度</b>"], ["<b>體感溫度</b>"]],
+            'align': "center",
+            'line': {'width': 1, 'color': 'black'},
+            'fill': {'color': "grey"},
+            'font': {'family': "Arial", 'size': 24, 'color': "white"},
+            'height': 35
+        },
+        'cells': {
+            'values': values,
+            'align': "center",
+            'line': {'color': "black", 'width': 1},
+            'font': {'family': "Arial", 'size': 22, 'color': ["black"]},
+            'height': 35
+  }
+}
+
+
+    #     table = {
+    #     'values': [100, 50, 30, 20],
+    #     'labels': ['香蕉', '蘋果', '水梨', '草莓'],
+    #     'type': 'pie'
+    # }
+        # 將相關圖表物件以list方式寫入
+        graphs = [
+            dict(
+                data=
+                    [table]
+                ,
+                layout=dict(
+                    width=1920,
+                    height=1080,
+                )
+            )
+        ]
+        # 序列化
+        graphJSON = json.dumps(graphs, cls=py.utils.PlotlyJSONEncoder)
+
+        return render_template('pyplot.html', graphJSON=graphJSON)
         return df.to_json(orient='records',force_ascii=False) #將所有資料用JSON格式回傳
+        #  render_template('index.html', ctrsuccess=jsonfiles)
     else:
         return "無此名稱"
 
