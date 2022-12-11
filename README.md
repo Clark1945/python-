@@ -37,5 +37,7 @@ D. CNN -Top News、Investment
 
 15. 台股市場分析： 開啟網站取得背後的XHR資料(使用JSON編碼)，透過修改get的網址取得，包含月統計年統計與Plotly呈現
 
+16. 氣象局Web API實作： 從查看網頁結構中抓出存取資源的方法，並使用對照表+BeautifulSoup+Pandas取得必要資料，再利用Flask建立在內網上。
+因為服務大多數都要錢了... 最後後端建立完成了，前端利用Plotly.js做呈現。
 
 Ex: pm 2.5偵測器功能 已廢棄

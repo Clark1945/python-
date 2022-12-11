@@ -154,9 +154,8 @@ def index(town):
         # 序列化
         graphJSON = json.dumps(graphs, cls=py.utils.PlotlyJSONEncoder)
 
-        return render_template('pyplot.html', graphJSON=graphJSON)
+        return render_template('pyplot.html', graphJSON=graphJSON) # 回傳html的template
         return df.to_json(orient='records',force_ascii=False) #將所有資料用JSON格式回傳
-        #  render_template('index.html', ctrsuccess=jsonfiles)
     else:
         return "無此名稱"
 
