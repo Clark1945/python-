@@ -1,0 +1,12 @@
+from .base import *
+
+SECRET_KEY = 'django-insecure-s9*&2s=8iw&9daq5bkfc@)_rlfncx8e$^0$tr29sc2iv_7wmr5'
+DEBUG = True
+TEMPLATE_DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(os.path.dirname(BASE_DIR), 'db.sqlite3'),
+    }
+}
