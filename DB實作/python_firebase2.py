@@ -96,7 +96,7 @@ def CheckKey(en):
     return keyid
 
 import os,time
-from firebase import firebase
+from firebase import firebase 
 
 url="https://pythontry01-default-rtdb.firebaseio.com/English"
 fb=firebase.FirebaseApplication(url,None)

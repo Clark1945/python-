@@ -7,6 +7,10 @@ import pandas as pd
 import os
 import json
 
+@app.route('/')
+def noPage():
+    return 'Please type the area to get more information.'
+
 @app.route('/<town>') # 網址加入參數
 def index(town):
     if not os.path.isfile('district.xlsx'):
@@ -14,7 +18,6 @@ def index(town):
         df=df[["縣市名稱","區里代碼","區鄉鎮名稱"]]
         df=df.drop_duplicates()
         df.to_excel('district.xlsx',encoding='utf-8',index=False)
-
 
     df_town=pd.read_excel('district.xlsx')
     dfs=df_town[(df_town["縣市名稱"]==town[0:3])&(df_town["區鄉鎮名稱"]==town[3:])]
@@ -62,7 +65,6 @@ def index(town):
             if all_data[x].th.text=="降雨機率":
                 for y in range(len(all_data[x].find_all('td'))):
                     measurement_rain.append(all_data[x].find_all('td')[y].text)
-                    # measurement_temperature.append(temperature)
             if all_data[x].th.text=="相對濕度":
                 for y in range(len(all_data[x].find_all('td'))):
                     measurement_wet.append(all_data[x].find_all('td')[y].text)
@@ -111,13 +113,14 @@ def index(town):
         df["風向"]=measurement_windDirection
         df["舒適度"]=measurement_comfort
 
-        values = [temp_date,measurement_time,measurement_weather,measurement_temperature,measurement_bodyTemperature
+        values = [temp_date,measurement_time,measurement_weather,measurement_temperature,measurement_bodyTemperature,measurement_rain2,measurement_wet,measurement_wind,measurement_windS,\
+            measurement_windDirection,measurement_comfort
 ]       
         table = {
         'type': 'table',
         'header': {
             'values': [["<b>日期</b>"], ["<b>時間</b>"],
-                        ["<b>天氣狀況</b>"], ["<b>溫度</b>"], ["<b>體感溫度</b>"]],
+                        ["<b>天氣狀況</b>"], ["<b>溫度</b>"], ["<b>體感溫度</b>"],["<b>降雨機率</b>"],["<b>相對濕度</b>"],["<b>蒲福風級</b>"],["<b>風速</b>"],["<b>風向</b>"],["<b>舒適度</b>"]],
             'align': "center",
             'line': {'width': 1, 'color': 'black'},
             'fill': {'color': "grey"},
@@ -133,12 +136,6 @@ def index(town):
   }
 }
 
-
-    #     table = {
-    #     'values': [100, 50, 30, 20],
-    #     'labels': ['香蕉', '蘋果', '水梨', '草莓'],
-    #     'type': 'pie'
-    # }
         # 將相關圖表物件以list方式寫入
         graphs = [
             dict(

@@ -10,16 +10,31 @@ def clickUrl():  #按「確定」鈕後處理函式
             rbvalue = 1  #設定選項按鈕的值
             filename.set(yt.title)  #取得影片名稱
             for v1 in yt.streams:#建立影片格式串列
-                # print(v1)
                 listvideo.append(v1)
-            for v2 in listvideo:  #建立影片格式選項按鈕
-                rbtem = tk.Radiobutton(frame3, text=v2, variable=video, value=rbvalue, command=rbVideo)
-                if(rbvalue==1):  #選取第1個選項按鈕       
-                    rbtem.select()
-                listradio.append(rbtem)  #建立選項按鈕串列        
-                rbtem.grid(row=rbvalue-1, column=0, sticky="w")
-                rbvalue += 1
-            btnDown.config(state="normal")  #設定「下載影片」按鈕有效
+            print(listvideo)
+            # root = ET.fromstring(listvideo)
+            # BestRes=""
+            # BesSound = ""
+            # MaxRes=""
+            # MaxSound=""
+            # for child in root:
+            #     if child.type == "video" and child.res > MaxRes:
+            #         MaxRes = child.res
+            #         BestRes = child
+            #     if child.type == "audio" and child.abr > MaxSound:
+            #         MaxSound = child.res
+            #         BesSound = child
+            # print("MAXSOUND",MaxSound)
+            # print("MAXRES",MaxRes)
+                
+            # for v2 in listvideo:  #建立影片格式選項按鈕
+            #     rbtem = tk.Radiobutton(frame3, text=v2, variable=video, value=rbvalue, command=rbVideo)
+            #     if(rbvalue==1):  #選取第1個選項按鈕       
+            #         rbtem.select()
+            #     listradio.append(rbtem)  #建立選項按鈕串列        
+            #     rbtem.grid(row=rbvalue-1, column=0, sticky="w")
+            #     rbvalue += 1
+            # btnDown.config(state="normal")  #設定「下載影片」按鈕有效
         except:  #顯示影片不存在訊息
             labelMsg.config(text="找不到此 Youtube 影片！")
         
@@ -59,6 +74,7 @@ def clickDown():  #按「下載影片」鈕後處理函式
 
 import tkinter as tk    
 from pytube import YouTube
+import xml.etree.ElementTree as ET
 
 window=tk.Tk()
 window.geometry("600x400")
@@ -91,7 +107,7 @@ entryPath = tk.Entry(frame1,textvariable=path)
 entryPath.config(width=40)
 label2.grid(row=1,column=0,pady=6,sticky="e")
 entryPath.grid(row=1,column=1)
-
+# 
 label3=tk.Label(frame1,text="檔案名稱")
 entryFile=tk.Entry(frame1,textvariable=filename)
 entryFile.config(width=40)

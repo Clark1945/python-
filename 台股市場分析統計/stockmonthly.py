@@ -4,6 +4,7 @@ def convertDate(date):
     realYear=str(int(year_str)+1911)
     realDate=realYear+date_str[4:6]+date_str[7:9]
     return realDate
+
 import requests,re
 import json,csv
 import pandas as pd
@@ -22,11 +23,11 @@ if not os.path.isfile(file_path):
     json_data=json.loads(res.text)
     titleFor=re.search('\d{4} \S+',json_data['title']).group()
     file_path=titleFor+file_path
-    outputFile=open(file_path,'w',newline='',encoding='UTF-8')
+    outputFile=open(file_path,'w',newline='',encoding='UTF-8') 
     outputWriter=csv.writer(outputFile)
-    outputWriter.writerow(json_data['fields'])
+    outputWriter.writerow(json_data['fields']) #寫入Header部分
     
-    for dataLine in (json_data['data']):
+    for dataLine in (json_data['data']):  #存入資料
         outputWriter.writerow(dataLine)
     outputFile.close()
 
