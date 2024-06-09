@@ -1,3 +1,6 @@
+import os,time
+from firebase import firebase
+
 def menu():
     os.system("cls")
     print("英文單字")
@@ -95,20 +98,10 @@ def CheckKey(en):
                 break
     return keyid
 
-import os,time
-from firebase import firebase 
-
 url="https://pythontry01-default-rtdb.firebaseio.com/English"
 fb=firebase.FirebaseApplication(url,None)
 datas=fb.get(url,None)
 
-# with open("media/word.csv",encoding="UTF-8-sig")as f:
-#     for line in f:
-#         eword,cword=line.rstrip("\n").split(",")
-#         word={"eword":eword,"cword":cword}
-#         if CheckKey(eword)== "":
-#             # fb.post(url,word)
-#             print(word)
 
 while True:
     menu()
