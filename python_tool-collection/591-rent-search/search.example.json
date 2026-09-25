@@ -1,0 +1,24 @@
+{
+  "region": "新竹縣",
+  "section": "54",
+  "kind": "分租套房",
+  "price_min": 5000,
+  "price_max": 10000,
+  "room": "1房",
+  "area_min": 0,
+  "area_max": 10,
+  "floor": "1層",
+  "toilet": "1衛",
+  "shape": "公寓",
+
+  "features": ["新上架", "近捷運"],
+  "equipment": ["有冷氣"],
+  "fitment": "新裝潢",
+  "included_fees": ["管理費"],
+  "notice": ["男女皆可"],
+
+  "exclude_url": [],
+  "exclude_url_file": "seen.txt",
+
+  "max_rows": 60
+}
